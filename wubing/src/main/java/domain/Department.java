@@ -1,30 +1,11 @@
 package domain;
 
-public class Department {
-    Integer id;
-    String name;
+import lombok.Data;
 
-    public Integer getId() {
-        return id;
-    }
+import java.io.Serializable;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Department{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
+@Data
+public class Department implements Serializable {
+    private Integer id;
+    private String name;
 }
