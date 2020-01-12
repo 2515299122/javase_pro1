@@ -9,20 +9,28 @@ import utils.ServiceInvocationHandler;
 
 import java.util.Scanner;
 
+/**
+ * @author wubing
+ */
 public class StaffFunction {
-    Scanner scanner=new Scanner(System.in);
-    public void findOne(Staff staff){
+    private Scanner scanner=new Scanner(System.in);
+    public void findOne(Staff staff)throws Exception{
         StaffService staffService= (StaffService) ServiceInvocationHandler.getProxyInstance(StaffServiceImpl.class,staff.getUsername());
-        staffService.findOne(staff.getId());//这一行没有任何作用，仅用于记录日志
+        //这一行没有任何作用，仅用于记录日志
+        if (staffService != null) {
+            staffService.findOne(staff.getId());
+        }
         System.out.println(staff);
 
     }
-    public void update(Staff staff){
+    public void update(Staff staff)throws Exception{
         StaffService staffService= (StaffService) ServiceInvocationHandler.getProxyInstance(StaffServiceImpl.class,staff.getUsername());
         System.out.println("当前密码为"+staff.getPassword());
         System.out.println("请输入新密码");
         staff.setPassword(scanner.next());
-        staffService.update(staff);
+        if (staffService != null) {
+            staffService.update(staff);
+        }
         System.out.println("修改成功");
     }
 }

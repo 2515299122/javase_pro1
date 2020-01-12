@@ -4,12 +4,13 @@ import service.AdminService;
 import service.impl.AdminServiceImpl;
 import utils.FactoryUtils;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AdminMeun {
-    Scanner scanner=new Scanner(System.in);
-    AdminFunction adminFunction=FactoryUtils.getObject(AdminFunction.class);
-    public void show(){
+    private Scanner scanner=new Scanner(System.in);
+    private AdminFunction adminFunction=FactoryUtils.getObject(AdminFunction.class);
+    void show() throws Exception {
         int choice;
         boolean flag=true;
         do {

@@ -4,12 +4,16 @@ import domain.Staff;
 import utils.FactoryUtils;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * @author Administrator
+ */
 public class StaffMeun {
-    Scanner scanner=new Scanner(System.in);
-    StaffFunction staffFunction= FactoryUtils.getObject(StaffFunction.class);
-    public void show(Staff staff){
+    private Scanner scanner=new Scanner(System.in);
+    private StaffFunction staffFunction= FactoryUtils.getObject(StaffFunction.class);
+    void show(Staff staff) throws Exception {
         int choice;
         boolean flag=true;
         do {

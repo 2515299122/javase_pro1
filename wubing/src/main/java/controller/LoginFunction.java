@@ -10,23 +10,23 @@ import utils.CheckCodeUtils;
 import utils.FactoryUtils;
 import utils.SleepUtils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+
 //登录功能的展示
 public class LoginFunction {
-    public void AdminLogin(){
+    public void adminLogin() throws Exception {
         AdminMeun adminMeun=FactoryUtils.getObject(AdminMeun.class);
         Scanner scanner= new Scanner(System.in);
         AdminService adminService =FactoryUtils.getObject(AdminServiceImpl.class);
         List<Integer> list;//生成随机验证码
         String username,password;
-        boolean flag=true;//便于循环，验证码及账号密码正确置为false跳出循环
+        //便于循环，验证码及账号密码正确置为false跳出循环
+        boolean flag=true;
         int result;
 
         do {
-            list= CheckCodeUtils.getCheckCode();//前两个数为生成的随机数，第三个数为其之和
+            //前两个数为生成的随机数，第三个数为其之和
+            list= CheckCodeUtils.getCheckCode();
             System.out.println(list.get(0) + "+" + list.get(1) + "=");
             System.out.print("请输入账号");
             username=scanner.next();
@@ -34,7 +34,8 @@ public class LoginFunction {
             password=scanner.next();
             System.out.println("请输入最上方等式的答案");
             result = scanner.nextInt();
-            if (result != list.get(2)) {//先判断验证码，错误重新输入
+            if (result != list.get(2)) {
+                //先判断验证码，错误重新输入
                 System.out.println("验证码错误");
                 flag=false;
                 continue;
@@ -55,18 +56,20 @@ public class LoginFunction {
         adminMeun.show();
     }
 
-    public void StaffLogin(){
+    void staffLogin()throws InputMismatchException,Exception{
         Scanner scanner= new Scanner(System.in);
         StaffMeun staffMeun = FactoryUtils.getObject(StaffMeun.class);
         StaffService staffService =FactoryUtils.getObject(StaffServiceImpl.class);
         List<Integer> list;//生成随机验证码
         String username,password;
-        boolean flag=true;//便于循环，验证码及账号密码正确置为false跳出循环
+        //便于循环，验证码及账号密码正确置为false跳出循环
+        boolean flag=true;
         int result;
         Staff staff=null;
 
         do {
-            list= CheckCodeUtils.getCheckCode();//前两个数为生成的随机数，第三个数为其之和
+            //前两个数为生成的随机数，第三个数为其之和
+            list= CheckCodeUtils.getCheckCode();
             System.out.println(list.get(0) + "+" + list.get(1) + "=");
             System.out.print("请输入账号");
             username=scanner.next();
@@ -74,7 +77,8 @@ public class LoginFunction {
             password=scanner.next();
             System.out.println("请输入最上方等式的答案");
             result = scanner.nextInt();
-            if (result != list.get(2)) {//先判断验证码，错误重新输入
+            //先判断验证码，错误重新输入
+            if (result != list.get(2)) {
                 System.out.println("验证码错误");
                 flag=false;
                 continue;

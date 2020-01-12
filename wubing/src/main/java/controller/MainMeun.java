@@ -1,16 +1,15 @@
 package controller;
 
-import dao.LoggingDao;
-import dao.impl.LoggingDaoImpl;
 import utils.FactoryUtils;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MainMeun {
-    Scanner scanner=new Scanner(System.in);
-    LoginFunction loginFunction=FactoryUtils.getObject(LoginFunction.class);
-    LogginShow logginShow=FactoryUtils.getObject(LogginShow.class);
-    public void show(){
+    private Scanner scanner=new Scanner(System.in);
+    private LoginFunction loginFunction=FactoryUtils.getObject(LoginFunction.class);
+    private LogginShow logginShow=FactoryUtils.getObject(LogginShow.class);
+    private void show() throws Exception {
         int choice;
         boolean flag=true;
         do {
@@ -21,9 +20,9 @@ public class MainMeun {
             System.out.print("请进行你的操作：");
             choice=scanner.nextInt();
             switch (choice){
-                case 1:loginFunction.AdminLogin();
+                case 1:loginFunction.adminLogin();
                     break;
-                case 2:loginFunction.StaffLogin();
+                case 2:loginFunction.staffLogin();
                     break;
                 case 3:logginShow.show(0,5);
                    break;
@@ -37,6 +36,13 @@ public class MainMeun {
     }
     public static void main(String[] args) {
         MainMeun main = FactoryUtils.getObject(MainMeun.class);
-        main.show();
+        try{
+            main.show();
+        }catch (InputMismatchException e){
+            System.out.println("输入异常，程序终止");
+        }catch (Exception e){
+            System.out.println("程序运行时出错！！！");
+        }
+
     }
 }
